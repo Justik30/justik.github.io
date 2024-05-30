@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="main.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Резюме</title>
+</head>
+<body>
+    <div class="container">
+        <div class="resume-container">
+            <h1>Мое резюме</h1>
+            <p><strong>Имя:</strong> <span id="nameSurname">Семен</span></p>
+            <p><strong>Фамилия:</strong> <span id="surname">Семиноженко</span></p>
+            <img src="https://gas-kvas.com/uploads/posts/2023-01/1673415303_gas-kvas-com-p-yaponskii-kot-risunki-anime-15.jpg" alt="Фото">
+            <input type="text" id="newName" placeholder="Новое имя">
+            <input type="text" id="newSurname" placeholder="Новая фамилия">
+            <button onclick="changeName()">Изменить Имя</button>
+            <button onclick="changeSurname()">Изменить Фамилию</button>
+            <br><br>
+            <button onclick="askAge()">Узнать возраст</button>
+                    </div>
+
+        <div class="container-form">
+            <h2>Операции с двумя числами</h2>
+            <input type="number" id="num1" placeholder="Введите первое число">
+            <input type="number" id="num2" placeholder="Введите второе число">
+            <button onclick="confirmFindMin()">Найти минимум</button>
+            <button onclick="confirmFindMax()">Найти максимум</button>
+            <button onclick="confirmCheckEqual()">Проверить равенство</button>
+            <div class="result" id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function changeName() {
+            var newName = document.getElementById("newName").
+            value;
+            if (newName) {
+                document.getElementById("nameSurname").innerText = newName;
+            } else {
+                alert("Пожалуйста, введите новое имя.");
+            }
+        }
+
+        function changeSurname() {
+            var newSurname = document.getElementById("newSurname").value;
+            if (newSurname) {
+                document.getElementById("surname").innerText = newSurname;
+            } else {
+                alert("Пожалуйста, введите новую фамилию.");
+            }
+
+        }
+
+        function askAge() {
+    let age;
+    while (true) {
+        age = prompt("Пожалуйста, введите ваш возраст:");
+        if (age === null) {
+            alert("Ввод отменен, попробуйте снова.");
+            continue;
+        }
+        if (confirm("Вам действительно " + age + " лет?")) {
+            alert("Возраст подтвержден.");
+            break;
+        } else {
+            alert("Попробуйте ввести возраст снова.");
+        }
+    }
+}
+
+        function findMin() {
+            let a = parseFloat(document.getElementById('num1').value);
+            let b = parseFloat(document.getElementById('num2').value);
+            let min = Math.min(a, b);
+            document.getElementById('result').innerText = 'Минимум: ' + min;
+        }
+
+        function findMax() {
+            let a = parseFloat(document.getElementById('num1').value);
+            let b = parseFloat(document.getElementById('num2').value);
+            let max = Math.max(a, b);
+            document.getElementById('result').innerText = 'Максимум: ' + max;
+        }
+
+        function checkEqual() {
+            let a = parseFloat(document.getElementById('num1').value);
+            let b = parseFloat(document.getElementById('num2').value);
+            let equal = (a === b);
+            document.getElementById('result').innerText = 'Равно: ' + (equal ? 'да' : 'нет');
+        }
+
+        function confirmAction(action) {
+            if (confirm("Вы уверены, что хотите выполнить эту операцию?")) {
+                action();
+            } else {
+                alert("Операция отменена.");
+            }
+        }
+
+        function confirmFindMin() {
+            confirmAction(findMin);
+        }
+
+        function confirmFindMax() {
+            confirmAction(findMax);
+        }
+
+        function confirmCheckEqual() {
+            confirmAction(checkEqual);
+        }
+    </script>
+</body>
+</html>
